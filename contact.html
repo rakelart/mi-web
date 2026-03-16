@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Arquicostura · Raquel Rodrigo</title>
+<meta name="description" content="Get in touch with Arquicostura and Raquel Rodrigo for large-scale textile art commissions, brand collaborations, and installations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #0C0C0A;
+  --cream:   #EDEAE3;
+  --fuchsia: #E8107A;
+  --mid:     #888580;
+  --light:   #F5F3EE;
+  --border:  rgba(12,12,10,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  position: fixed;
+  width: 20px; height: 20px;
+  pointer-events: none;
+  z-index: 9999;
+  left: -100px; top: -100px;
+  margin-left: -10px; margin-top: -10px;
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+  will-change: left, top;
+}
+.cursor svg { width: 100%; height: 100%; display: block; }
+.cursor.hover {
+  width: 32px; height: 32px;
+  margin-left: -16px; margin-top: -16px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(12,12,10,0.95);
+  backdrop-filter: blur(12px);
+  padding: 20px 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+}
+.nav-logo svg { width: 28px; height: 28px; }
+.nav-wordmark { display: flex; flex-direction: column; gap: 2px; }
+.nav-name {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300; font-size: 13px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cream); line-height: 1;
+}
+.nav-rr {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(237,234,227,0.45); line-height: 1;
+}
+.nav-rule { width: 1px; height: 28px; background: rgba(237,234,227,0.2); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.55);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a.active {
+  color: var(--cream);
+  border-bottom: 1px solid var(--fuchsia);
+  padding-bottom: 2px;
+}
+.nav-lang {
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.35);
+  cursor: pointer; transition: color 0.2s;
+}
+.nav-lang span { color: var(--fuchsia); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  min-height: 56vh;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 56px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(237,234,227,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237,234,227,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* Big X watermark */
+.header-x-bg {
+  position: absolute;
+  right: -60px; top: 50%;
+  transform: translateY(-45%);
+  opacity: 0.035;
+  pointer-events: none;
+}
+
+.ph-eyebrow {
+  font-size: 10px; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--fuchsia);
+  margin-bottom: 20px; position: relative;
+  opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards;
+}
+.ph-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-style: italic;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95; color: var(--cream);
+  position: relative;
+  opacity: 0; animation: fadeUp 0.7s ease 0.35s forwards;
+}
+
+.ph-line {
+  height: 3px;
+  background: linear-gradient(90deg, var(--fuchsia) 0%, transparent 60%);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CONTACT BODY ── */
+.contact-body {
+  background: var(--light);
+  padding: 96px 56px 120px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* ── LEFT COLUMN — info ── */
+.contact-info {
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.6s forwards;
+}
+
+.contact-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.4;
+  color: var(--black);
+  margin-bottom: 48px;
+}
+.contact-intro em {
+  font-style: normal;
+  color: var(--fuchsia);
+}
+
+.contact-block {
+  margin-bottom: 40px;
+}
+.contact-block-label {
+  font-size: 9px; letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 10px;
+}
+.contact-block-value {
+  font-size: 14px; line-height: 1.6;
+  color: var(--black);
+}
+.contact-block-value a {
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid var(--fuchsia);
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+.contact-block-value a:hover { color: var(--fuchsia); }
+
+.contact-divider {
+  width: 48px; height: 1px;
+  background: rgba(12,12,10,0.15);
+  margin: 48px 0;
+}
+
+/* Social links */
+.contact-socials {
+  display: flex;
+  gap: 24px;
+}
+.social-link {
+  font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: color 0.2s;
+}
+.social-link:hover { color: var(--black); }
+.social-link::before {
+  content: '';
+  display: block; width: 20px; height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.social-link:hover::before { width: 32px; }
+
+/* ── RIGHT COLUMN — form ── */
+.contact-form-wrap {
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.75s forwards;
+}
+
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+}
+.form-section-label {
+  font-size: 9px; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--mid);
+}
+.form-req {
+  font-size: 9px; letter-spacing: 0.12em;
+  color: rgba(136,133,128,0.6);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-field {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 9px; letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.form-field:focus-within label { color: var(--black); }
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(12,12,10,0.18);
+  padding: 10px 0 12px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--black);
+  outline: none;
+  transition: border-color 0.25s;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.form-field select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888580' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  padding-right: 20px;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--black);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(12,12,10,0.25);
+}
+
+/* animated underline on focus */
+.form-field::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--fuchsia);
+  transition: width 0.35s ease;
+}
+.form-field:focus-within::after { width: 100%; }
+
+.form-field textarea { resize: none; line-height: 1.7; }
+
+/* Inquiry type chips */
+.inquiry-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.chip {
+  padding: 8px 18px;
+  border: 1px solid rgba(12,12,10,0.15);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.chip:hover,
+.chip.active {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--cream);
+}
+.chip.active {
+  border-color: var(--fuchsia);
+  background: var(--fuchsia);
+  color: #fff;
+}
+
+.chips-label {
+  font-size: 9px; letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 12px;
+}
+
+/* Submit */
+.form-submit-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.form-note {
+  font-size: 10px; letter-spacing: 0.1em;
+  color: rgba(12,12,10,0.35);
+}
+
+.btn-submit {
+  position: relative;
+  padding: 16px 40px;
+  background: var(--black);
+  color: var(--cream);
+  border: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--fuchsia);
+  transform: translateX(-101%);
+  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.btn-submit:hover::before { transform: translateX(0); }
+.btn-submit span { position: relative; z-index: 1; }
+
+/* Success state */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 80px 40px;
+}
+.form-success.visible { display: block; }
+.success-x {
+  margin: 0 auto 32px;
+  width: 56px; height: 56px;
+}
+.success-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 32px; font-weight: 300;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+.success-sub {
+  font-size: 13px; line-height: 1.7;
+  color: var(--mid);
+}
+
+/* ── AVAILABILITY STRIP ── */
+.availability-strip {
+  background: var(--black);
+  padding: 48px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(237,234,227,0.06);
+}
+.avail-left {
+  display: flex; align-items: center; gap: 16px;
+}
+.avail-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74,222,128,0.4);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  50% { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+}
+.avail-text {
+  font-size: 12px; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.5);
+}
+.avail-text strong { color: var(--cream); font-weight: 300; }
+.avail-right {
+  font-size: 11px; letter-spacing: 0.12em;
+  color: rgba(237,234,227,0.3);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(237,234,227,0.06);
+  padding: 40px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.footer-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.footer-links a {
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.25);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(237,234,227,0.65); }
+.footer-copy {
+  font-size: 10px; letter-spacing: 0.12em;
+  color: rgba(237,234,227,0.2);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 24px 28px; }
+  nav.scrolled { padding: 18px 28px; }
+  .page-header { padding: 0 28px 56px; }
+  .contact-body {
+    grid-template-columns: 1fr;
+    padding: 64px 28px 80px;
+    gap: 56px;
+  }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .availability-strip { flex-direction: column; gap: 16px; padding: 36px 28px; text-align: center; }
+  footer { flex-direction: column; gap: 28px; padding: 36px 28px; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .nav-links, .nav-lang { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor">
+  <svg viewBox="0 0 20 20" fill="none">
+    <line x1="2" y1="2" x2="18" y2="18" stroke="#E8107A" stroke-width="1.5"/>
+    <line x1="18" y1="2" x2="2" y2="18" stroke="#E8107A" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav id="main-nav">
+  <a href="/" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="rgba(237,234,227,0.7)"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="rgba(237,234,227,0.7)"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="rgba(237,234,227,0.7)"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="rgba(237,234,227,0.7)"/>
+    </svg>
+    <div style="width:1px;height:28px;background:rgba(237,234,227,0.2);"></div>
+    <div class="nav-wordmark">
+      <span class="nav-name">Arquicostura</span>
+      <span class="nav-rr">Raquel Rodrigo</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/projects">Work</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/contact" class="active">Contact</a></li>
+  </ul>
+
+  <span class="nav-lang"><span>EN</span> / ES</span>
+</nav>
+
+<!-- ══ PAGE HEADER ══ -->
+<div class="page-header">
+  <!-- Big background X -->
+  <div class="header-x-bg">
+    <svg width="520" height="520" viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="var(--cream)"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="var(--cream)"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="var(--cream)"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="var(--cream)"/>
+    </svg>
+  </div>
+
+  <div class="ph-eyebrow">Get in touch</div>
+  <h1 class="ph-title">Let's make<br>something.</h1>
+</div>
+
+<div class="ph-line"></div>
+
+<!-- ══ CONTACT BODY ══ -->
+<div class="contact-body">
+
+  <!-- LEFT — info -->
+  <div class="contact-info">
+    <p class="contact-intro">
+      Every project starts<br>with a <em>conversation.</em>
+    </p>
+
+    <div class="contact-block">
+      <div class="contact-block-label">Email</div>
+      <div class="contact-block-value">
+        <a href="mailto:info@arquicostura.com">info@arquicostura.com</a>
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <div class="contact-block-label">Studio</div>
+      <div class="contact-block-value">
+        Valencia, España<br>
+        Available for commissions worldwide
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <div class="contact-block-label">Response time</div>
+      <div class="contact-block-value">
+        Within 24 hours
+      </div>
+    </div>
+
+    <div class="contact-divider"></div>
+
+    <div class="contact-socials">
+      <a href="https://instagram.com/arquicosturastudio" target="_blank" class="social-link">Instagram</a>
+    </div>
+  </div>
+
+  <!-- RIGHT — form -->
+  <div class="contact-form-wrap">
+    <div class="form-label-row">
+      <span class="form-section-label">Send a message</span>
+      <span class="form-req">All fields required</span>
+    </div>
+
+    <form class="contact-form" id="contactForm" novalidate>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="company">Company / Brand</label>
+        <input type="text" id="company" name="company" placeholder="Optional">
+      </div>
+
+      <div style="margin-bottom:32px;">
+        <div class="chips-label">Type of project</div>
+        <div class="inquiry-chips" id="chipGroup">
+          <button type="button" class="chip" data-value="installation">Installation</button>
+          <button type="button" class="chip" data-value="mural">Mural</button>
+          <button type="button" class="chip" data-value="brand">Brand collaboration</button>
+          <button type="button" class="chip" data-value="retail">Retail / Display</button>
+          <button type="button" class="chip" data-value="architecture">Architecture</button>
+          <button type="button" class="chip" data-value="other">Other</button>
+        </div>
+        <input type="hidden" id="projectType" name="projectType">
+      </div>
+
+      <div class="form-field">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="City, country">
+      </div>
+
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project — scope, space, timeline, vision…"></textarea>
+      </div>
+
+      <div class="form-submit-row">
+        <span class="form-note">No commitment, just a conversation.</span>
+        <button type="submit" class="btn-submit">
+          <span>Send message →</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Success message -->
+    <div class="form-success" id="formSuccess">
+      <div class="success-x">
+        <svg viewBox="0 0 80 80" fill="none">
+          <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="var(--fuchsia)"/>
+          <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="var(--fuchsia)"/>
+          <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="var(--fuchsia)"/>
+          <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="var(--fuchsia)"/>
+        </svg>
+      </div>
+      <div class="success-headline">Message received.</div>
+      <p class="success-sub">I'll be in touch within 24 hours.<br>In the meantime, find me on Instagram.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ AVAILABILITY STRIP ══ -->
+<div class="availability-strip">
+  <div class="avail-left">
+    <div class="avail-dot"></div>
+    <span class="avail-text">Currently <strong>accepting commissions</strong> for 2026–2027</span>
+  </div>
+  <span class="avail-right">Valencia · Salamanca · Madrid · Florida</span>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <a href="/" class="footer-logo">
+    <svg width="20" height="20" viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="rgba(237,234,227,0.3)"/>
+    </svg>
+    <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(237,234,227,0.25);">Arquicostura</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/projects">Work</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="https://instagram.com/arquicosturastudio" target="_blank">Instagram</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 Arquicostura · Raquel Rodrigo</span>
+</footer>
+
+<script>
+// ── Custom cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, .chip, .btn-submit').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+
+// ── Nav scroll
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── Inquiry chips (single select)
+const chips = document.querySelectorAll('.chip');
+const hiddenType = document.getElementById('projectType');
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    hiddenType.value = chip.dataset.value;
+  });
+});
+
+// ── Form submit (mock — swap with real handler)
+const form = document.getElementById('contactForm');
+const successEl = document.getElementById('formSuccess');
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  // Basic validation highlight
+  let valid = true;
+  ['name','email','message'].forEach(id => {
+    const field = document.getElementById(id);
+    if (!field.value.trim()) {
+      field.style.borderBottomColor = '#E8107A';
+      valid = false;
+    } else {
+      field.style.borderBottomColor = '';
+    }
+  });
+  if (!valid) return;
+
+  // Simulate send
+  const btn = form.querySelector('.btn-submit');
+  btn.querySelector('span').textContent = 'Sending…';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    form.style.display = 'none';
+    successEl.classList.add('visible');
+    const wrap = document.querySelector('.form-label-row');
+    if (wrap) wrap.style.display = 'none';
+  }, 1200);
+});
+</script>
+</body>
+</html>

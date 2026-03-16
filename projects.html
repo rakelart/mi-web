@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Arquicostura · Raquel Rodrigo</title>
+<meta name="description" content="Large-scale textile art projects by Arquicostura and Raquel Rodrigo. Murals, installations and textile interventions for institutions and brands worldwide — Chicago, New York, Los Angeles, Madrid.">
+<meta name="keywords" content="textile art, large scale mural, textile installation, Raquel Rodrigo, Arquicostura, Chicago Botanic Garden, Audible mural, contemporary textile artist Spain">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #0C0C0A;
+  --cream:   #EDEAE3;
+  --fuchsia: #E8107A;
+  --mid:     #888580;
+  --light:   #F5F3EE;
+  --border:  rgba(0,0,0,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--light);
+  color: var(--black);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245,243,238,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+.nav-logo svg { width: 24px; height: 24px; }
+.nav-rule { width:1px; height:24px; background:rgba(15,15,13,0.12); }
+.nav-wordmark { display:flex; flex-direction:column; gap:2px; }
+.nav-name {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1;
+}
+.nav-rr {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--mid);
+  line-height: 1;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--black); }
+.nav-links a.active { border-bottom: 1px solid var(--fuchsia); padding-bottom: 2px; }
+.nav-lang {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  cursor: pointer;
+}
+.nav-lang span { color: var(--fuchsia); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 160px 56px 80px;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(237,234,227,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237,234,227,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.ph-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fuchsia);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.ph-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  color: var(--cream);
+  position: relative;
+}
+
+.ph-count {
+  position: absolute;
+  bottom: 80px;
+  right: 56px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.25);
+}
+
+/* transition line */
+.ph-line {
+  height: 3px;
+  background: linear-gradient(90deg, var(--fuchsia) 0%, transparent 60%);
+}
+
+/* ── PROJECTS LIST ── */
+.projects-list {
+  padding: 0 56px 120px;
+  background: var(--light);
+}
+
+/* ── PROJECT ITEM — asymmetric layout ── */
+.project-item {
+  display: grid;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s ease;
+  position: relative;
+}
+
+/* ODD: image left, text right */
+.project-item.layout-a {
+  grid-template-columns: 1.4fr 1fr;
+  min-height: 520px;
+}
+
+/* EVEN: text left, image right — smaller image */
+.project-item.layout-b {
+  grid-template-columns: 1fr 1.6fr;
+  min-height: 480px;
+}
+
+/* FEATURED: full width image, text overlaid bottom */
+.project-item.layout-featured {
+  grid-template-columns: 1fr;
+  min-height: 640px;
+  position: relative;
+}
+
+.project-item:hover { background: rgba(232,16,122,0.02); }
+
+/* Image side */
+.pi-image {
+  position: relative;
+  overflow: hidden;
+  background: #1A1A18;
+}
+
+.layout-b .pi-image { order: 2; }
+
+.pi-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+
+.project-item:hover .pi-placeholder { background: #222220; }
+
+.pi-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(237,234,227,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237,234,227,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.pi-ph-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 2vw, 22px);
+  color: rgba(237,234,227,0.12);
+  text-align: center;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Image number tag */
+.pi-num {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(237,234,227,0.3);
+  z-index: 2;
+}
+
+/* Hover X overlay */
+.pi-hover-x {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 3;
+}
+.project-item:hover .pi-hover-x { opacity: 1; }
+
+/* Text side */
+.pi-text {
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.layout-b .pi-text { order: 1; }
+
+.pi-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pi-location {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fuchsia);
+}
+
+.pi-year {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--mid);
+}
+
+.pi-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  margin-bottom: 20px;
+}
+
+.pi-client {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 20px;
+}
+
+.pi-desc {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #555550;
+  max-width: 400px;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+
+.pi-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.pi-tag {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  color: var(--mid);
+}
+
+.pi-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(15,15,13,0.15);
+  padding-bottom: 3px;
+  align-self: flex-start;
+  transition: gap 0.2s, color 0.2s, border-color 0.2s;
+}
+.pi-link:hover { gap: 18px; color: var(--fuchsia); border-color: var(--fuchsia); }
+.pi-link::after { content: '→'; font-size: 14px; }
+
+/* FEATURED layout overrides */
+.layout-featured .pi-image {
+  position: absolute;
+  inset: 0;
+}
+.layout-featured .pi-placeholder {
+  min-height: 640px;
+}
+.layout-featured .pi-text {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(12,12,10,0.92));
+  padding: 64px 56px 48px;
+  color: var(--cream);
+  z-index: 2;
+}
+.layout-featured .pi-title { color: var(--cream); font-size: clamp(36px, 5vw, 64px); }
+.layout-featured .pi-desc { color: rgba(237,234,227,0.6); }
+.layout-featured .pi-link { color: var(--cream); border-color: rgba(237,234,227,0.25); }
+.layout-featured .pi-link:hover { color: var(--fuchsia); border-color: var(--fuchsia); }
+.layout-featured .pi-client { color: rgba(237,234,227,0.5); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  padding: 48px 56px;
+  border-top: 1px solid rgba(237,234,227,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
+.footer-copy { font-size:10px; letter-spacing:0.18em; color:rgba(237,234,227,0.2); }
+.footer-links { display:flex; gap:28px; list-style:none; }
+.footer-links a { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(237,234,227,0.3); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color: var(--fuchsia); }
+
+@media (max-width: 900px) {
+  nav { padding: 20px 28px; }
+  .nav-links { display: none; }
+  .page-header { padding: 120px 28px 64px; }
+  .ph-count { display: none; }
+  .projects-list { padding: 0 0 80px; }
+  .project-item.layout-a,
+  .project-item.layout-b,
+  .project-item.layout-featured { grid-template-columns: 1fr; min-height: auto; }
+  .layout-b .pi-image { order: 0; }
+  .layout-b .pi-text { order: 1; }
+  .pi-placeholder { min-height: 280px; }
+  .pi-text { padding: 40px 28px; }
+  .layout-featured .pi-text { padding: 40px 28px 32px; position: relative; background: var(--black); }
+  .layout-featured .pi-title { color: var(--cream); }
+  .layout-featured .pi-desc { color: rgba(237,234,227,0.55); }
+  footer { padding: 40px 28px; flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#0C0C0A"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#0C0C0A"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#0C0C0A"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#0C0C0A"/>
+    </svg>
+    <div class="nav-rule"></div>
+    <div class="nav-wordmark">
+      <span class="nav-name">Arquicostura</span>
+      <span class="nav-rr">Raquel Rodrigo</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/" >Home</a></li>
+    <li><a href="/projects" class="active">Work</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <div class="nav-lang"><span>EN</span> / ES</div>
+</nav>
+
+<!-- ══ PAGE HEADER ══ -->
+<div class="page-header">
+  <div class="ph-eyebrow">Selected work</div>
+  <h1 class="ph-title">Projects</h1>
+  <div class="ph-count">12 projects</div>
+</div>
+<div class="ph-line"></div>
+
+<!-- ══ PROJECTS LIST ══ -->
+<div class="projects-list">
+
+  <!-- 01 — FEATURED: Chicago Botanic Garden -->
+  <div class="project-item layout-featured">
+    <div class="pi-image">
+      <div class="pi-placeholder">
+        <span class="pi-ph-label">Chicago Botanic Garden · Mural</span>
+        <div class="pi-num">01</div>
+      </div>
+    </div>
+    <div class="pi-text">
+      <div class="pi-meta">
+        <span class="pi-location">Chicago, USA</span>
+        <span class="pi-year">2024</span>
+      </div>
+      <h2 class="pi-title">Chicago Botanic Garden</h2>
+      <div class="pi-client">Chicago Botanic Garden</div>
+      <p class="pi-desc">Large-scale textile mural commissioned for the Chicago Botanic Garden. A permanent installation weaving botanical motifs with architectural textile structures across the interior of the space.</p>
+      <div class="pi-tags">
+        <span class="pi-tag">Mural</span>
+        <span class="pi-tag">Permanent installation</span>
+        <span class="pi-tag">Institutional</span>
+      </div>
+      <a href="/projects/chicago-botanic-garden" class="pi-link">View project</a>
+    </div>
+  </div>
+
+  <!-- 02 — Audible New York -->
+  <div class="project-item layout-a">
+    <div class="pi-image">
+      <div class="pi-placeholder">
+        <span class="pi-ph-label">Audible · New York</span>
+        <div class="pi-num">02</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="pi-text">
+      <div class="pi-meta">
+        <span class="pi-location">New York, USA</span>
+        <span class="pi-year">2024</span>
+      </div>
+      <h2 class="pi-title">Audible Headquarters</h2>
+      <div class="pi-client">Audible / Amazon</div>
+      <p class="pi-desc">Textile mural intervention for Audible's New York headquarters. A large-format piece exploring the relationship between sound, space and textile texture across the corporate environment.</p>
+      <div class="pi-tags">
+        <span class="pi-tag">Mural</span>
+        <span class="pi-tag">Corporate</span>
+        <span class="pi-tag">USA</span>
+      </div>
+      <a href="/projects/audible-new-york" class="pi-link">View project</a>
+    </div>
+  </div>
+
+  <!-- 03 — Audible LA -->
+  <div class="project-item layout-b">
+    <div class="pi-text">
+      <div class="pi-meta">
+        <span class="pi-location">Los Angeles, USA</span>
+        <span class="pi-year">2024</span>
+      </div>
+      <h2 class="pi-title">Audible LA Studio</h2>
+      <div class="pi-client">Audible / Amazon</div>
+      <p class="pi-desc">Companion piece to the New York installation. Textile intervention for Audible's Los Angeles studio, adapting the same visual language to a West Coast creative workspace.</p>
+      <div class="pi-tags">
+        <span class="pi-tag">Mural</span>
+        <span class="pi-tag">Corporate</span>
+        <span class="pi-tag">USA</span>
+      </div>
+      <a href="/projects/audible-los-angeles" class="pi-link">View project</a>
+    </div>
+    <div class="pi-image">
+      <div class="pi-placeholder">
+        <span class="pi-ph-label">Audible · Los Angeles</span>
+        <div class="pi-num">03</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 — Sombraje Murcia -->
+  <div class="project-item layout-a">
+    <div class="pi-image">
+      <div class="pi-placeholder">
+        <span class="pi-ph-label">Instalación de sombraje · Murcia</span>
+        <div class="pi-num">04</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="pi-text">
+      <div class="pi-meta">
+        <span class="pi-location">Murcia, España</span>
+        <span class="pi-year">2023</span>
+      </div>
+      <h2 class="pi-title">Shade Installation 200m²</h2>
+      <div class="pi-client">Proyecto público</div>
+      <p class="pi-desc">A 200 square metre architectural shade structure combining textile engineering with artistic intervention. The installation transforms an outdoor public space through woven geometry and controlled light.</p>
+      <div class="pi-tags">
+        <span class="pi-tag">Instalación</span>
+        <span class="pi-tag">Arquitectura textil</span>
+        <span class="pi-tag">200m²</span>
+        <span class="pi-tag">Espacio público</span>
+      </div>
+      <a href="/projects/sombraje-murcia" class="pi-link">View project</a>
+    </div>
+  </div>
+
+  <!-- 05 — Pull & Bear -->
+  <div class="project-item layout-b">
+    <div class="pi-text">
+      <div class="pi-meta">
+        <span class="pi-location">España</span>
+        <span class="pi-year">2022</span>
+      </div>
+      <h2 class="pi-title">Pull &amp; Bear Campaign</h2>
+      <div class="pi-client">Pull &amp; Bear / Inditex</div>
+      <p class="pi-desc">Street marketing textile intervention for Pull &amp; Bear. Large-format embroidered pieces deployed across key retail locations as part of a national brand campaign.</p>
+      <div class="pi-tags">
+        <span class="pi-tag">Street Marketing</span>
+        <span class="pi-tag">Retail</span>
+        <span class="pi-tag">Moda</span>
+      </div>
+      <a href="/projects/pull-bear" class="pi-link">View project</a>
+    </div>
+    <div class="pi-image">
+      <div class="pi-placeholder">
+        <span class="pi-ph-label">Pull &amp; Bear · Campaign</span>
+        <div class="pi-num">05</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 — Cervezas Alhambra -->
+  <div class="project-item layout-a">
+    <div class="pi-image">
+      <div class="pi-placeholder">
+        <span class="pi-ph-label">Cervezas Alhambra · Crear sin prisa</span>
+        <div class="pi-num">06</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="pi-text">
+      <div class="pi-meta">
+        <span class="pi-location">España</span>
+        <span class="pi-year">2021</span>
+      </div>
+      <h2 class="pi-title">Crear sin prisa</h2>
+      <div class="pi-client">Cervezas Alhambra</div>
+      <p class="pi-desc">Window display and street marketing installation for Cervezas Alhambra's "Crear sin prisa" campaign. Textile pieces translating the brand's philosophy of slow creativity into spatial intervention.</p>
+      <div class="pi-tags">
+        <span class="pi-tag">Street Marketing</span>
+        <span class="pi-tag">Escaparate</span>
+        <span class="pi-tag">Brand</span>
+      </div>
+      <a href="/projects/cervezas-alhambra" class="pi-link">View project</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <a href="/" class="footer-logo">
+    <svg width="20" height="20" viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="rgba(237,234,227,0.3)"/>
+    </svg>
+    <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(237,234,227,0.25);">Arquicostura</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/projects">Work</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="https://instagram.com/arquicosturastudio" target="_blank">Instagram</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 Arquicostura · Raquel Rodrigo</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Press — Arquicostura · Raquel Rodrigo</title>
+<meta name="description" content="Press coverage and media features of Arquicostura — Raquel Rodrigo Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #0C0C0A;
+  --cream:   #EDEAE3;
+  --fuchsia: #E8107A;
+  --mid:     #888580;
+  --light:   #F5F3EE;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CURSOR ── */
+.cursor {
+  position: fixed;
+  width: 20px; height: 20px;
+  pointer-events: none;
+  z-index: 9999;
+  left: -100px; top: -100px;
+  margin-left: -10px; margin-top: -10px;
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+  will-change: left, top;
+}
+.cursor svg { width: 100%; height: 100%; display: block; }
+.cursor.hover { width: 32px; height: 32px; margin-left: -16px; margin-top: -16px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(12,12,10,0.95);
+  backdrop-filter: blur(12px);
+  padding: 20px 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+}
+.nav-logo svg { width: 28px; height: 28px; }
+.nav-wordmark { display: flex; flex-direction: column; gap: 2px; }
+.nav-name {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream);
+  line-height: 1;
+}
+.nav-rr {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(237,234,227,0.45);
+  line-height: 1;
+}
+.nav-rule { width: 1px; height: 28px; background: rgba(237,234,227,0.2); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a.active { color: var(--cream); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 56px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(237,234,227,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237,234,227,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.hero-x-bg {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.04;
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fuchsia);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+.hero-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(52px, 8vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.5s forwards;
+}
+.hero-headline em { font-style: normal; color: var(--fuchsia); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── DIVIDER ── */
+.section-divider {
+  height: 1px;
+  background: rgba(237,234,227,0.1);
+  margin: 0 56px;
+}
+
+/* ── PRESS LIST ── */
+.press-section {
+  padding: 0 56px 120px;
+}
+
+.press-intro {
+  padding: 80px 0 64px;
+  max-width: 560px;
+}
+.press-intro p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.6;
+  color: rgba(237,234,227,0.65);
+  font-weight: 300;
+}
+
+/* Each press item */
+.press-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.press-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(237,234,227,0.08);
+  text-decoration: none;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.press-item::before {
+  content: '';
+  position: absolute;
+  left: -56px;
+  top: 0; bottom: 0;
+  width: 3px;
+  background: var(--fuchsia);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.press-item:hover::before { transform: scaleY(1); }
+.press-item:hover { border-color: rgba(237,234,227,0.18); }
+
+.press-item:first-child { border-top: 1px solid rgba(237,234,227,0.08); }
+
+.press-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.press-medium {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(28px, 3.5vw, 48px);
+  color: var(--cream);
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+.press-item:hover .press-medium { color: var(--fuchsia); }
+
+.press-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.press-year {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.35);
+}
+.press-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(237,234,227,0.2);
+}
+
+.press-item-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: var(--fuchsia);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.press-item:hover .press-item-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+.press-arrow {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(232,16,122,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.press-item:hover .press-arrow {
+  background: var(--fuchsia);
+  border-color: var(--fuchsia);
+}
+.press-arrow svg { width: 14px; height: 14px; }
+
+/* ── QUOTE STRIP ── */
+.quote-strip {
+  background: rgba(237,234,227,0.03);
+  border-top: 1px solid rgba(237,234,227,0.07);
+  border-bottom: 1px solid rgba(237,234,227,0.07);
+  padding: 80px 56px;
+  margin-bottom: 0;
+}
+.quote-strip blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.45;
+  color: var(--cream);
+  max-width: 840px;
+  margin: 0 auto;
+  text-align: center;
+}
+.quote-strip blockquote::before {
+  content: '"';
+  color: var(--fuchsia);
+  font-size: 1.2em;
+  line-height: 0;
+  vertical-align: -0.25em;
+  margin-right: 4px;
+}
+.quote-strip blockquote::after {
+  content: '"';
+  color: var(--fuchsia);
+  font-size: 1.2em;
+  line-height: 0;
+  vertical-align: -0.25em;
+  margin-left: 4px;
+}
+.quote-source {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.3);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 48px 56px;
+  border-top: 1px solid rgba(237,234,227,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+.footer-logo:hover { opacity: 0.7; }
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(237,234,227,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--cream); }
+.footer-copy {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(237,234,227,0.2);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  nav.scrolled { padding: 16px 24px; }
+  .nav-links { gap: 20px; }
+  .hero { padding: 0 24px 56px; min-height: 45vh; }
+  .section-divider { margin: 0 24px; }
+  .press-section { padding: 0 24px 80px; }
+  .press-intro { padding: 56px 0 48px; }
+  .press-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+  .press-item-right { opacity: 1; transform: none; }
+  .quote-strip { padding: 56px 24px; }
+  footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  .footer-links { flex-wrap: wrap; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor">
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2.5,0 Q0,0 0,2.5 L17.5,20 Q20,20 20,17.5 L2.5,0 Z" fill="#EDEAE3"/>
+    <path d="M0,2.5 Q0,0 2.5,0 L20,17.5 Q20,20 17.5,20 L0,2.5 Z" fill="#EDEAE3"/>
+    <path d="M17.5,0 Q20,0 20,2.5 L2.5,20 Q0,20 0,17.5 L17.5,0 Z" fill="#EDEAE3"/>
+    <path d="M20,2.5 Q20,0 17.5,0 L0,17.5 Q0,20 2.5,20 L20,2.5 Z" fill="#EDEAE3"/>
+  </svg>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#EDEAE3"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#EDEAE3"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#EDEAE3"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#EDEAE3"/>
+    </svg>
+    <div class="nav-rule"></div>
+    <div class="nav-wordmark">
+      <span class="nav-name">Arquicostura</span>
+      <span class="nav-rr">Raquel Rodrigo</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/projects">Work</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/press" class="active">Press</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-x-bg">
+    <svg width="700" height="700" viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#EDEAE3"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#EDEAE3"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#EDEAE3"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#EDEAE3"/>
+    </svg>
+  </div>
+
+  <div class="hero-eyebrow">Press · Media · Features</div>
+  <h1 class="hero-headline">
+    As seen in<br>the <em>world</em>'s<br>press.
+  </h1>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══ PRESS LIST ══ -->
+<section class="press-section">
+
+  <div class="press-intro">
+    <p>Selected coverage from international and national media — from The Guardian to Spanish press — tracing the story of Arquicostura.</p>
+  </div>
+
+  <div class="press-list">
+
+    <!-- The Guardian -->
+    <a class="press-item" href="https://www.theguardian.com/artanddesign/2023/jan/12/spanish-artist-raquel-rodrigo-brings-embroidery-to-the-streets" target="_blank" rel="noopener">
+      <div class="press-item-left">
+        <div class="press-medium">The Guardian</div>
+        <div class="press-meta">
+          <span class="press-year">2023</span>
+          <span class="press-dot"></span>
+          <span class="press-year">Art &amp; Design</span>
+        </div>
+      </div>
+      <div class="press-item-right">
+        <span>Read</span>
+        <div class="press-arrow">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- El Mundo Yo Dona -->
+    <a class="press-item" href="https://www.elmundo.es/yodona/moda/2023/05/09/63cfe61b21efa059768b45c4.html" target="_blank" rel="noopener">
+      <div class="press-item-left">
+        <div class="press-medium">El Mundo · Yo Dona</div>
+        <div class="press-meta">
+          <span class="press-year">2023</span>
+          <span class="press-dot"></span>
+          <span class="press-year">Moda</span>
+        </div>
+      </div>
+      <div class="press-item-right">
+        <span>Leer</span>
+        <div class="press-arrow">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Cadena SER -->
+    <a class="press-item" href="https://cadenaser.com/comunitat-valenciana/2023/01/12/la-artista-valenciana-que-borda-edificios-y-ha-enamorado-al-reino-unido-radio-valencia/" target="_blank" rel="noopener">
+      <div class="press-item-left">
+        <div class="press-medium">Cadena SER</div>
+        <div class="press-meta">
+          <span class="press-year">2023</span>
+          <span class="press-dot"></span>
+          <span class="press-year">Radio · Comunitat Valenciana</span>
+        </div>
+      </div>
+      <div class="press-item-right">
+        <span>Leer</span>
+        <div class="press-arrow">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Las Provincias -->
+    <a class="press-item" href="https://www.lasprovincias.es/sociedad/urbanitas/coser-solo-abuela-20210606191236-nt.html" target="_blank" rel="noopener">
+      <div class="press-item-left">
+        <div class="press-medium">Las Provincias</div>
+        <div class="press-meta">
+          <span class="press-year">2021</span>
+          <span class="press-dot"></span>
+          <span class="press-year">Sociedad</span>
+        </div>
+      </div>
+      <div class="press-item-right">
+        <span>Leer</span>
+        <div class="press-arrow">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Culturplaza -->
+    <a class="press-item" href="https://valenciaplaza.com/noticas-cultura-valencia-comunitat-valenciana/de-fallas-experimentales-tradiciones-hogarenas-y-como-salvar-el-planeta-con-punto-de-cruz" target="_blank" rel="noopener">
+      <div class="press-item-left">
+        <div class="press-medium">Culturplaza</div>
+        <div class="press-meta">
+          <span class="press-year">2020</span>
+          <span class="press-dot"></span>
+          <span class="press-year">Cultura · Valencia</span>
+        </div>
+      </div>
+      <div class="press-item-right">
+        <span>Leer</span>
+        <div class="press-arrow">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Trendencias -->
+    <a class="press-item" href="https://www.trendencias.com/arte/una-artista-de-madrid-ha-creado-la-arquicostura-y-el-resultado-nos-ha-dejado-sin-palabras" target="_blank" rel="noopener">
+      <div class="press-item-left">
+        <div class="press-medium">Trendencias</div>
+        <div class="press-meta">
+          <span class="press-year">2018</span>
+          <span class="press-dot"></span>
+          <span class="press-year">Arte</span>
+        </div>
+      </div>
+      <div class="press-item-right">
+        <span>Leer</span>
+        <div class="press-arrow">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══ QUOTE ══ -->
+<div class="quote-strip">
+  <blockquote>
+    A Spanish artist brings embroidery to the streets — putting something as private as a home's embroidery in the spotlight.
+  </blockquote>
+  <p class="quote-source">The Guardian · 2023</p>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <a href="/" class="footer-logo">
+    <svg width="24" height="24" viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="rgba(237,234,227,0.3)"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="rgba(237,234,227,0.3)"/>
+    </svg>
+    <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(237,234,227,0.25);">Arquicostura</span>
+  </a>
+
+  <ul class="footer-links">
+    <li><a href="/projects">Work</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="https://instagram.com/arquicosturastudio" target="_blank">Instagram</a></li>
+  </ul>
+
+  <span class="footer-copy">© 2025 Arquicostura · Raquel Rodrigo</span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+  document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+  document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Staggered reveal on scroll
+  const items = document.querySelectorAll('.press-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = (i * 0.07) + 's';
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  items.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(16px)';
+    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease';
+    observer.observe(item);
+  });
+</script>
+</body>
+</html>
