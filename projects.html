@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projects — Arquicostura · Raquel Rodrigo</title>
-<meta name="description" content="Large-scale textile art projects by Arquicostura and Raquel Rodrigo. Murals, installations and textile interventions for institutions and brands worldwide — Chicago, New York, Los Angeles, Madrid.">
+<meta name="description" content="Large-scale textile art projects by Arquicostura and Raquel Rodrigo. Public art, brand collaborations and interior design — Chicago, New York, Los Angeles, Amsterdam, London, Paris, Valencia.">
 <meta name="keywords" content="textile art, large scale mural, textile installation, Raquel Rodrigo, Arquicostura, Chicago Botanic Garden, Audible mural, contemporary textile artist Spain">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -143,19 +143,67 @@ nav {
   color: rgba(237,234,227,0.25);
 }
 
-/* transition line */
 .ph-line {
   height: 3px;
   background: linear-gradient(90deg, var(--fuchsia) 0%, transparent 60%);
 }
 
-/* ── PROJECTS LIST ── */
-.projects-list {
-  padding: 0 56px 120px;
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  padding: 80px 56px 48px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
   background: var(--light);
 }
 
-/* ── PROJECT ITEM — asymmetric layout ── */
+.section-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-divider-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-divider-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--fuchsia);
+}
+
+.section-divider-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 300;
+  color: var(--black);
+  white-space: nowrap;
+}
+
+.section-divider-sub {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* ── PROJECTS LIST ── */
+.projects-list {
+  padding: 0 56px 0;
+  background: var(--light);
+}
+
+.projects-section {
+  padding-bottom: 40px;
+}
+
+/* ── PROJECT ITEM ── */
 .project-item {
   display: grid;
   border-bottom: 1px solid var(--border);
@@ -163,19 +211,16 @@ nav {
   position: relative;
 }
 
-/* ODD: image left, text right */
 .project-item.layout-a {
   grid-template-columns: 1.4fr 1fr;
   min-height: 520px;
 }
 
-/* EVEN: text left, image right — smaller image */
 .project-item.layout-b {
   grid-template-columns: 1fr 1.6fr;
   min-height: 480px;
 }
 
-/* FEATURED: full width image, text overlaid bottom */
 .project-item.layout-featured {
   grid-template-columns: 1fr;
   min-height: 640px;
@@ -202,31 +247,19 @@ nav {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  transition: background 0.4s;
 }
 
-.project-item:hover .pi-placeholder { background: #222220; }
-
-.pi-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(237,234,227,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(237,234,227,0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
+/* Real image */
+.pi-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
 }
 
-.pi-ph-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(14px, 2vw, 22px);
-  color: rgba(237,234,227,0.12);
-  text-align: center;
-  padding: 24px;
-  position: relative;
-  z-index: 1;
-}
+.project-item:hover .pi-photo { transform: scale(1.03); }
 
 /* Image number tag */
 .pi-num {
@@ -235,11 +268,14 @@ nav {
   left: 24px;
   font-size: 10px;
   letter-spacing: 0.22em;
-  color: rgba(237,234,227,0.3);
+  color: rgba(237,234,227,0.7);
   z-index: 2;
+  background: rgba(12,12,10,0.35);
+  padding: 4px 8px;
+  backdrop-filter: blur(4px);
 }
 
-/* Hover X overlay */
+/* Hover overlay */
 .pi-hover-x {
   position: absolute;
   inset: 0;
@@ -249,6 +285,7 @@ nav {
   opacity: 0;
   transition: opacity 0.3s;
   z-index: 3;
+  background: rgba(12,12,10,0.1);
 }
 .project-item:hover .pi-hover-x { opacity: 1; }
 
@@ -326,6 +363,20 @@ nav {
   color: var(--mid);
 }
 
+.pi-badge {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  background: var(--fuchsia);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+
 .pi-link {
   display: inline-flex;
   align-items: center;
@@ -348,7 +399,7 @@ nav {
   position: absolute;
   inset: 0;
 }
-.layout-featured .pi-placeholder {
+.layout-featured .pi-photo {
   min-height: 640px;
 }
 .layout-featured .pi-text {
@@ -375,6 +426,7 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   gap: 24px;
+  margin-top: 80px;
 }
 .footer-logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
 .footer-copy { font-size:10px; letter-spacing:0.18em; color:rgba(237,234,227,0.2); }
@@ -387,13 +439,14 @@ footer {
   .nav-links { display: none; }
   .page-header { padding: 120px 28px 64px; }
   .ph-count { display: none; }
-  .projects-list { padding: 0 0 80px; }
+  .projects-list { padding: 0 0 0; }
+  .section-divider { padding: 60px 28px 36px; }
   .project-item.layout-a,
   .project-item.layout-b,
   .project-item.layout-featured { grid-template-columns: 1fr; min-height: auto; }
   .layout-b .pi-image { order: 0; }
   .layout-b .pi-text { order: 1; }
-  .pi-placeholder { min-height: 280px; }
+  .pi-photo { min-height: 280px; }
   .pi-text { padding: 40px 28px; }
   .layout-featured .pi-text { padding: 40px 28px 32px; position: relative; background: var(--black); }
   .layout-featured .pi-title { color: var(--cream); }
@@ -405,13 +458,13 @@ footer {
 <body>
 
 <!-- ══ NAV ══ -->
-<nav id="nav">
-  <a href="index.html" class="nav-logo">
-    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#EDEAE3"/>
-      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#EDEAE3"/>
-      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#EDEAE3"/>
-      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#EDEAE3"/>
+<nav>
+  <a href="/" class="nav-logo">
+    <svg viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#0C0C0A"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#0C0C0A"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#0C0C0A"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#0C0C0A"/>
     </svg>
     <div class="nav-rule"></div>
     <div class="nav-wordmark">
@@ -420,13 +473,15 @@ footer {
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="projects.html">Work</a></li>
-    <li><a href="studio.html">Studio</a></li>
-    <li><a href="press.html">Press</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/projects" class="active">Work</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/contact">Contact</a></li>
   </ul>
   <div class="nav-lang"><span>EN</span> / ES</div>
 </nav>
+
 <!-- ══ PAGE HEADER ══ -->
 <div class="page-header">
   <div class="ph-eyebrow">Selected work</div>
@@ -438,39 +493,51 @@ footer {
 <!-- ══ PROJECTS LIST ══ -->
 <div class="projects-list">
 
-  <!-- 01 — FEATURED: Chicago Botanic Garden -->
-  <div class="project-item layout-featured">
-    <div class="pi-image">
-      <div class="pi-placeholder">
-        <span class="pi-ph-label">Chicago Botanic Garden · Mural</span>
+  <!-- ════════════════════════════════════
+       SECTION 1 — PUBLIC ART
+  ════════════════════════════════════ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">
+      <span class="section-divider-eyebrow">01</span>
+      <span class="section-divider-title">Public Art</span>
+      <span class="section-divider-sub">Institutions · Museums · City Councils</span>
+    </div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="projects-section">
+
+    <!-- 01 — Chicago Botanic Garden (FEATURED) -->
+    <div class="project-item layout-featured">
+      <div class="pi-image">
+        <img src="chicago.jpg" alt="Chicago Botanic Garden textile mural" class="pi-photo">
         <div class="pi-num">01</div>
       </div>
-    </div>
-    <div class="pi-text">
-      <div class="pi-meta">
-        <span class="pi-location">Chicago, USA</span>
-        <span class="pi-year">2024</span>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Chicago, USA</span>
+          <span class="pi-year">2024</span>
+        </div>
+        <h2 class="pi-title">Chicago Botanic Garden</h2>
+        <div class="pi-client">Chicago Botanic Garden</div>
+        <p class="pi-desc">A permanent textile mural weaving botanical motifs with large-scale architectural embroidery across the garden's entrance facade.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Mural</span>
+          <span class="pi-tag">Permanent installation</span>
+          <span class="pi-tag">Institutional</span>
+        </div>
+        <a href="/projects/chicago-botanic-garden" class="pi-link">View project</a>
       </div>
-      <h2 class="pi-title">Chicago Botanic Garden</h2>
-      <div class="pi-client">Chicago Botanic Garden</div>
-      <p class="pi-desc">Large-scale textile mural commissioned for the Chicago Botanic Garden. A permanent installation weaving botanical motifs with architectural textile structures across the interior of the space.</p>
-      <div class="pi-tags">
-        <span class="pi-tag">Mural</span>
-        <span class="pi-tag">Permanent installation</span>
-        <span class="pi-tag">Institutional</span>
-      </div>
-      <a href="/projects/chicago-botanic-garden" class="pi-link">View project</a>
     </div>
-  </div>
 
-  <!-- 02 — Audible New York -->
-  <div class="project-item layout-a">
-    <div class="pi-image">
-      <div class="pi-placeholder">
-        <span class="pi-ph-label">Audible · New York</span>
+    <!-- 02 — Artichoke Festival, Switzerland -->
+    <div class="project-item layout-a">
+      <div class="pi-image">
+        <img src="suiza.JPG" alt="Artichoke Festival Stavayer-le-Lac Switzerland facade" class="pi-photo">
         <div class="pi-num">02</div>
         <div class="pi-hover-x">
-          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
             <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
             <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
             <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
@@ -478,47 +545,46 @@ footer {
           </svg>
         </div>
       </div>
-    </div>
-    <div class="pi-text">
-      <div class="pi-meta">
-        <span class="pi-location">New York, USA</span>
-        <span class="pi-year">2024</span>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Stavayer-le-Lac, Switzerland</span>
+          <span class="pi-year">2019</span>
+        </div>
+        <h2 class="pi-title">Artichoke Festival</h2>
+        <div class="pi-client">Fête de l'Artichaut</div>
+        <p class="pi-desc">The festival invited us to cover an entire building facade with our signature roses — the same blooms that live in our home cushion designs, scaled up to inhabit the walls of a Swiss village.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Facade</span>
+          <span class="pi-tag">Festival</span>
+          <span class="pi-tag">Large-scale</span>
+        </div>
+        <a href="/projects/artichoke-festival-switzerland" class="pi-link">View project</a>
       </div>
-      <h2 class="pi-title">Audible Headquarters</h2>
-      <div class="pi-client">Audible / Amazon</div>
-      <p class="pi-desc">Textile mural intervention for Audible's New York headquarters. A large-format piece exploring the relationship between sound, space and textile texture across the corporate environment.</p>
-      <div class="pi-tags">
-        <span class="pi-tag">Mural</span>
-        <span class="pi-tag">Corporate</span>
-        <span class="pi-tag">USA</span>
-      </div>
-      <a href="/projects/audible-new-york" class="pi-link">View project</a>
     </div>
-  </div>
 
-  <!-- 03 — Audible LA -->
-  <div class="project-item layout-b">
-    <div class="pi-text">
-      <div class="pi-meta">
-        <span class="pi-location">Los Angeles, USA</span>
-        <span class="pi-year">2024</span>
+    <!-- 03 — Efluenow, Valencia -->
+    <div class="project-item layout-b">
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Valencia, Spain</span>
+          <span class="pi-year">2020</span>
+        </div>
+        <h2 class="pi-title">Efluenow</h2>
+        <div class="pi-client">Centre del Carme CCCC</div>
+        <p class="pi-desc">A 20-metre spiral installation at the cloister of the Centre del Carme — declared in climate emergency. Fluorescent embroidery, black light, white light and sound, evoking the bioluminescent creatures of the deep sea that generate their own light.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Installation</span>
+          <span class="pi-tag">Sound & light</span>
+          <span class="pi-tag">20 linear metres</span>
+          <span class="pi-tag">Cultural centre</span>
+        </div>
+        <a href="/projects/efluenow-valencia" class="pi-link">View project</a>
       </div>
-      <h2 class="pi-title">Audible LA Studio</h2>
-      <div class="pi-client">Audible / Amazon</div>
-      <p class="pi-desc">Companion piece to the New York installation. Textile intervention for Audible's Los Angeles studio, adapting the same visual language to a West Coast creative workspace.</p>
-      <div class="pi-tags">
-        <span class="pi-tag">Mural</span>
-        <span class="pi-tag">Corporate</span>
-        <span class="pi-tag">USA</span>
-      </div>
-      <a href="/projects/audible-los-angeles" class="pi-link">View project</a>
-    </div>
-    <div class="pi-image">
-      <div class="pi-placeholder">
-        <span class="pi-ph-label">Audible · Los Angeles</span>
+      <div class="pi-image">
+        <img src="efluenow.jpg" alt="Efluenow installation Centre del Carme Valencia" class="pi-photo">
         <div class="pi-num">03</div>
         <div class="pi-hover-x">
-          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
             <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
             <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
             <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
@@ -527,65 +593,55 @@ footer {
         </div>
       </div>
     </div>
+
+  </div><!-- /projects-section public art -->
+
+
+  <!-- ════════════════════════════════════
+       SECTION 2 — BRANDS
+  ════════════════════════════════════ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">
+      <span class="section-divider-eyebrow">02</span>
+      <span class="section-divider-title">Brands</span>
+      <span class="section-divider-sub">Marketing Agencies · Retail · Corporate</span>
+    </div>
+    <div class="section-divider-line"></div>
   </div>
 
-  <!-- 04 — Sombraje Murcia -->
-  <div class="project-item layout-a">
-    <div class="pi-image">
-      <div class="pi-placeholder">
-        <span class="pi-ph-label">Instalación de sombraje · Murcia</span>
+  <div class="projects-section">
+
+    <!-- 04 — Audible (FEATURED) -->
+    <div class="project-item layout-featured">
+      <div class="pi-image">
+        <img src="audible.jpg" alt="Audible Pride and Prejudice textile mural Los Angeles" class="pi-photo">
         <div class="pi-num">04</div>
-        <div class="pi-hover-x">
-          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
-            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
-            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
-            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
-            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
-          </svg>
+      </div>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">New York & Los Angeles, USA</span>
+          <span class="pi-year">2024</span>
         </div>
+        <h2 class="pi-title">Audible</h2>
+        <div class="pi-client">Audible / Amazon</div>
+        <p class="pi-desc">Large-format embroidered murals for Audible's campaign in New York and Los Angeles — exploring the relationship between storytelling, texture and public space.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Mural</span>
+          <span class="pi-tag">Street marketing</span>
+          <span class="pi-tag">USA</span>
+        </div>
+        <a href="/projects/audible" class="pi-link">View project</a>
       </div>
     </div>
-    <div class="pi-text">
-      <div class="pi-meta">
-        <span class="pi-location">Murcia, España</span>
-        <span class="pi-year">2023</span>
-      </div>
-      <h2 class="pi-title">Shade Installation 200m²</h2>
-      <div class="pi-client">Proyecto público</div>
-      <p class="pi-desc">A 200 square metre architectural shade structure combining textile engineering with artistic intervention. The installation transforms an outdoor public space through woven geometry and controlled light.</p>
-      <div class="pi-tags">
-        <span class="pi-tag">Instalación</span>
-        <span class="pi-tag">Arquitectura textil</span>
-        <span class="pi-tag">200m²</span>
-        <span class="pi-tag">Espacio público</span>
-      </div>
-      <a href="/projects/sombraje-murcia" class="pi-link">View project</a>
-    </div>
-  </div>
 
-  <!-- 05 — Pull & Bear -->
-  <div class="project-item layout-b">
-    <div class="pi-text">
-      <div class="pi-meta">
-        <span class="pi-location">España</span>
-        <span class="pi-year">2022</span>
-      </div>
-      <h2 class="pi-title">Pull &amp; Bear Campaign</h2>
-      <div class="pi-client">Pull &amp; Bear / Inditex</div>
-      <p class="pi-desc">Street marketing textile intervention for Pull &amp; Bear. Large-format embroidered pieces deployed across key retail locations as part of a national brand campaign.</p>
-      <div class="pi-tags">
-        <span class="pi-tag">Street Marketing</span>
-        <span class="pi-tag">Retail</span>
-        <span class="pi-tag">Moda</span>
-      </div>
-      <a href="/projects/pull-bear" class="pi-link">View project</a>
-    </div>
-    <div class="pi-image">
-      <div class="pi-placeholder">
-        <span class="pi-ph-label">Pull &amp; Bear · Campaign</span>
+    <!-- 05 — Cervezas Alhambra -->
+    <div class="project-item layout-a">
+      <div class="pi-image">
+        <img src="alhambra.jpg" alt="Cervezas Alhambra Crear sin prisa textile intervention" class="pi-photo">
         <div class="pi-num">05</div>
         <div class="pi-hover-x">
-          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
             <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
             <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
             <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
@@ -593,17 +649,45 @@ footer {
           </svg>
         </div>
       </div>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Spain</span>
+          <span class="pi-year">2021</span>
+        </div>
+        <h2 class="pi-title">Crear sin prisa</h2>
+        <div class="pi-client">Cervezas Alhambra</div>
+        <p class="pi-desc">Window displays and street marketing for Alhambra's "Crear sin prisa" campaign — translating the brand's philosophy of slow creativity into textile pieces that invite you to stop and look.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Street marketing</span>
+          <span class="pi-tag">Window display</span>
+          <span class="pi-tag">Brand</span>
+        </div>
+        <a href="/projects/cervezas-alhambra" class="pi-link">View project</a>
+      </div>
     </div>
-  </div>
 
-  <!-- 06 — Cervezas Alhambra -->
-  <div class="project-item layout-a">
-    <div class="pi-image">
-      <div class="pi-placeholder">
-        <span class="pi-ph-label">Cervezas Alhambra · Crear sin prisa</span>
+    <!-- 06 — Anartxy -->
+    <div class="project-item layout-b">
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Valencia, Spain</span>
+          <span class="pi-year">2017</span>
+        </div>
+        <h2 class="pi-title">Anartxy</h2>
+        <div class="pi-client">Anartxy Steel Jewels</div>
+        <p class="pi-desc">We dressed the facade of this jewellery shop in the heart of Valencia's old town with Valencian modernism made embroidery — orange trees climbing stone walls. It became a reference point in the city.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Facade</span>
+          <span class="pi-tag">Retail</span>
+          <span class="pi-tag">Valencian modernism</span>
+        </div>
+        <a href="/projects/anartxy" class="pi-link">View project</a>
+      </div>
+      <div class="pi-image">
+        <img src="anartxy.jpg" alt="Anartxy jewellery shop facade embroidery Valencia" class="pi-photo">
         <div class="pi-num">06</div>
         <div class="pi-hover-x">
-          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.4">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
             <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
             <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
             <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
@@ -612,24 +696,209 @@ footer {
         </div>
       </div>
     </div>
-    <div class="pi-text">
-      <div class="pi-meta">
-        <span class="pi-location">España</span>
-        <span class="pi-year">2021</span>
+
+    <!-- 07 — Gayafores -->
+    <div class="project-item layout-a">
+      <div class="pi-image">
+        <img src="gayafores.jpg" alt="Gayafores tile patterns embroidered stand" class="pi-photo">
+        <div class="pi-num">07</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
       </div>
-      <h2 class="pi-title">Crear sin prisa</h2>
-      <div class="pi-client">Cervezas Alhambra</div>
-      <p class="pi-desc">Window display and street marketing installation for Cervezas Alhambra's "Crear sin prisa" campaign. Textile pieces translating the brand's philosophy of slow creativity into spatial intervention.</p>
-      <div class="pi-tags">
-        <span class="pi-tag">Street Marketing</span>
-        <span class="pi-tag">Escaparate</span>
-        <span class="pi-tag">Brand</span>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Spain</span>
+          <span class="pi-year">2015</span>
+        </div>
+        <h2 class="pi-title">Gayafores</h2>
+        <div class="pi-client">Azulejos Gayafores</div>
+        <p class="pi-desc">We embroidered the patterns of their tiles to present colour and form in a completely new way — one you can also touch. Embroidery brings a tactile warmth that gives another dimension to the product.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Exhibition stand</span>
+          <span class="pi-tag">Brand</span>
+          <span class="pi-tag">Ceramics</span>
+        </div>
+        <a href="/projects/gayafores" class="pi-link">View project</a>
       </div>
-      <a href="/projects/cervezas-alhambra" class="pi-link">View project</a>
     </div>
+
+  </div><!-- /projects-section brands -->
+
+
+  <!-- ════════════════════════════════════
+       SECTION 3 — INTERIOR DESIGN
+  ════════════════════════════════════ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">
+      <span class="section-divider-eyebrow">03</span>
+      <span class="section-divider-title">Interior Design</span>
+      <span class="section-divider-sub">Architecture Studios · Hotels · Restaurants</span>
+    </div>
+    <div class="section-divider-line"></div>
   </div>
 
-</div>
+  <div class="projects-section">
+
+    <!-- 08 — Hilton Amsterdam (FEATURED) -->
+    <div class="project-item layout-featured">
+      <div class="pi-image">
+        <img src="hilton-amsterdam.jpeg" alt="Hilton Amsterdam restaurant tulip embroidered dividers" class="pi-photo">
+        <div class="pi-num">08</div>
+      </div>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Amsterdam, Netherlands</span>
+          <span class="pi-year">2024</span>
+        </div>
+        <div class="pi-badge">★ Restaurant &amp; Bar Design Awards — 2025 Shortlist</div>
+        <h2 class="pi-title">Hilton Amsterdam</h2>
+        <div class="pi-client">Hilton Hotels &amp; Resorts</div>
+        <p class="pi-desc">With Amsterdam's architects, we recreated Dutch tulips as embroidered room dividers in the hotel restaurant. Each panel works on both sides — a signature detail of our craft, where every stitch is finished to be seen from anywhere.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Hotel</span>
+          <span class="pi-tag">Room dividers</span>
+          <span class="pi-tag">Double-sided</span>
+          <span class="pi-tag">Award-nominated</span>
+        </div>
+        <a href="/projects/hilton-amsterdam" class="pi-link">View project</a>
+      </div>
+    </div>
+
+    <!-- 09 — Hilton London -->
+    <div class="project-item layout-a">
+      <div class="pi-image">
+        <img src="hilton-londres.jpg" alt="Hilton London velvet thread embroidered sofa copper mesh" class="pi-photo">
+        <div class="pi-num">09</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">London, UK</span>
+          <span class="pi-year">2021</span>
+        </div>
+        <h2 class="pi-title">Hilton London</h2>
+        <div class="pi-client">Hilton Hotels &amp; Resorts</div>
+        <p class="pi-desc">Abstract forms embroidered in velvet thread on copper-bathed mesh — like a rug slowly erased by the passage of time. The piece presides over the hotel entrance, where elegance is measured in detail.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Hotel</span>
+          <span class="pi-tag">Velvet thread</span>
+          <span class="pi-tag">Copper mesh</span>
+          <span class="pi-tag">Lobby</span>
+        </div>
+        <a href="/projects/hilton-london" class="pi-link">View project</a>
+      </div>
+    </div>
+
+    <!-- 10 — Davidson, Paris -->
+    <div class="project-item layout-b">
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Paris, France</span>
+          <span class="pi-year">2022</span>
+        </div>
+        <h2 class="pi-title">Davidson Consulting</h2>
+        <div class="pi-client">Davidson Consulting</div>
+        <p class="pi-desc">Tropical plants embroidered on black metallic mesh painted to match the wall — the mesh itself becomes part of the decoration. A vibrant piece that floods a dark space with colour, designed with the project architect.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Office</span>
+          <span class="pi-tag">Metal mesh</span>
+          <span class="pi-tag">Tropical motifs</span>
+        </div>
+        <a href="/projects/davidson-paris" class="pi-link">View project</a>
+      </div>
+      <div class="pi-image">
+        <img src="davidson.jpg" alt="Davidson Consulting Paris tropical embroidered wall" class="pi-photo">
+        <div class="pi-num">10</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 — Vaqueta, Valencia -->
+    <div class="project-item layout-a">
+      <div class="pi-image">
+        <img src="vaqueta.jpg" alt="Vaqueta Gastro Bar Valencia orange tree embroidery columns" class="pi-photo">
+        <div class="pi-num">11</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Valencia, Spain</span>
+          <span class="pi-year">2019</span>
+        </div>
+        <h2 class="pi-title">Vaqueta Gastro Bar</h2>
+        <div class="pi-client">Vaqueta Gastro Bar</div>
+        <p class="pi-desc">Embroidered oranges greet you at the entrance of this restaurant opposite the Central Market. Upstairs, we wrapped the columns of the show-cooking room — turning architectural barriers into artistic canvases.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Restaurant</span>
+          <span class="pi-tag">Column wrapping</span>
+          <span class="pi-tag">Valencia</span>
+        </div>
+        <a href="/projects/vaqueta" class="pi-link">View project</a>
+      </div>
+    </div>
+
+    <!-- 12 — UtopicUs, Barcelona -->
+    <div class="project-item layout-b">
+      <div class="pi-text">
+        <div class="pi-meta">
+          <span class="pi-location">Barcelona, Spain</span>
+          <span class="pi-year">2018</span>
+        </div>
+        <h2 class="pi-title">UtopicUs</h2>
+        <div class="pi-client">UtopicUs · Izaskun Chinchilla Architects</div>
+        <p class="pi-desc">With architect Izaskun Chinchilla, we embroidered the railings of the entire UtopicUs coworking building with clementines — in tribute to the tree that once lived in the courtyard below.</p>
+        <div class="pi-tags">
+          <span class="pi-tag">Coworking</span>
+          <span class="pi-tag">Railings</span>
+          <span class="pi-tag">Architecture collaboration</span>
+        </div>
+        <a href="/projects/utopicus" class="pi-link">View project</a>
+      </div>
+      <div class="pi-image">
+        <img src="utopicus.jpg" alt="UtopicUs Barcelona railings clementines embroidery Izaskun Chinchilla" class="pi-photo">
+        <div class="pi-num">12</div>
+        <div class="pi-hover-x">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="0.6">
+            <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#E8107A"/>
+            <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#E8107A"/>
+            <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#E8107A"/>
+            <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#E8107A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /projects-section interior design -->
+
+</div><!-- /projects-list -->
 
 <!-- ══ FOOTER ══ -->
 <footer>
