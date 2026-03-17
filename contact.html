@@ -532,27 +532,29 @@ footer {
 </div>
 
 <!-- ══ NAV ══ -->
-<nav id="nav">
+<nav id="main-nav">
   <a href="index.html" class="nav-logo">
-    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="#EDEAE3"/>
-      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="#EDEAE3"/>
-      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="#EDEAE3"/>
-      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="#EDEAE3"/>
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="rgba(237,234,227,0.7)"/>
+      <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="rgba(237,234,227,0.7)"/>
+      <path d="M67,0 Q80,0 80,13 L13,80 Q0,80 0,67 L67,0 Z" fill="rgba(237,234,227,0.7)"/>
+      <path d="M80,13 Q80,0 67,0 L0,67 Q0,80 13,80 L80,13 Z" fill="rgba(237,234,227,0.7)"/>
     </svg>
-    <div class="nav-rule"></div>
+    <div style="width:1px;height:28px;background:rgba(237,234,227,0.2);"></div>
     <div class="nav-wordmark">
       <span class="nav-name">Arquicostura</span>
       <span class="nav-rr">Raquel Rodrigo</span>
     </div>
   </a>
+
   <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
     <li><a href="projects.html">Work</a></li>
     <li><a href="studio.html">Studio</a></li>
-    <li><a href="press.html">Press</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
   </ul>
-  <div class="nav-lang"><span>EN</span> / ES</div>
+
+  <span class="nav-lang"><span>EN</span> / ES</span>
 </nav>
 
 <!-- ══ PAGE HEADER ══ -->
@@ -585,7 +587,7 @@ footer {
     <div class="contact-block">
       <div class="contact-block-label">Email</div>
       <div class="contact-block-value">
-        <a href="mailto:info@arquicostura.com">info@arquicostura.com</a>
+        <a href="/cdn-cgi/l/email-protection#41282f272e012033303428222e32353433206f222e2c"><span class="__cf_email__" data-cfemail="a5cccbc3cae5c4d7d4d0ccc6cad6d1d0d7c48bc6cac8">[email&#160;protected]</span></a>
       </div>
     </div>
 
@@ -695,7 +697,7 @@ footer {
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <a href="/" class="footer-logo">
+  <a href="index.html" class="footer-logo">
     <svg width="20" height="20" viewBox="0 0 80 80" fill="none">
       <path d="M13,0 Q0,0 0,13 L67,80 Q80,80 80,67 L13,0 Z" fill="rgba(237,234,227,0.3)"/>
       <path d="M0,13 Q0,0 13,0 L80,67 Q80,80 67,80 L0,13 Z" fill="rgba(237,234,227,0.3)"/>
@@ -705,16 +707,16 @@ footer {
     <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(237,234,227,0.25);">Arquicostura</span>
   </a>
   <ul class="footer-links">
-  <li><a href="projects.html">Work</a></li>
-  <li><a href="studio.html">Studio</a></li>
-  <li><a href="contact.html">Contact</a></li>
-  <li><a href="press.html">Press</a></li>
-  <li><a href="https://instagram.com/arquicosturastudio" target="_blank">Instagram</a></li>
-</ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Work</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://instagram.com/arquicosturastudio" target="_blank">Instagram</a></li>
+  </ul>
   <span class="footer-copy">© 2025 Arquicostura · Raquel Rodrigo</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Custom cursor
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
@@ -765,17 +767,39 @@ form.addEventListener('submit', e => {
   });
   if (!valid) return;
 
-  // Simulate send
+  // Send to Formspree
   const btn = form.querySelector('.btn-submit');
   btn.querySelector('span').textContent = 'Sending…';
   btn.disabled = true;
 
-  setTimeout(() => {
-    form.style.display = 'none';
-    successEl.classList.add('visible');
-    const wrap = document.querySelector('.form-label-row');
-    if (wrap) wrap.style.display = 'none';
-  }, 1200);
+  fetch('https://formspree.io/f/meerrbpb', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      company: document.getElementById('company').value,
+      projectType: document.getElementById('projectType').value,
+      location: document.getElementById('location').value,
+      message: document.getElementById('message').value
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      form.style.display = 'none';
+      successEl.style.display = 'block';
+    } else {
+      btn.querySelector('span').textContent = 'Send message →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly.');
+    }
+  })
+  .catch(() => {
+    btn.querySelector('span').textContent = 'Send message →';
+    btn.disabled = false;
+    alert('Something went wrong. Please email us directly.');
+  });
+
 });
 </script>
 </body>
