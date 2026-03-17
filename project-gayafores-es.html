@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UtopicUs Clementina — Barcelona · Arquicostura</title>
-<meta name="description" content="UtopicUs Clementina — Embroidered staircase railings for Izaskun Chinchilla's coworking space in Barcelona's Gràcia neighbourhood. Arquicostura · Raquel Rodrigo. 2018.">
+<title>Gayafores — Arquicostura</title>
+<meta name="description" content="Gayafores — Patrones de azulejos bordados para el stand de la exposición de Azulejos Gayafores. Una nueva forma de presentar el diseño cerámico a través del tacto y la textura. Arquicostura · Raquel Rodrigo. 2015.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -22,7 +22,6 @@
 html { scroll-behavior: smooth; }
 body { background: var(--light); color: var(--black); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
 
-/* ── NAV ── */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 56px; display: flex; justify-content: space-between; align-items: center; background: rgba(245,243,238,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
 .nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
 .nav-logo svg { width: 24px; height: 24px; }
@@ -37,13 +36,12 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 56
 .nav-lang { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); cursor: pointer; }
 .nav-lang span { color: var(--fuchsia); }
 
-/* ── HERO ── */
 .hero { height: 100vh; position: relative; overflow: hidden; }
 .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(12,12,10,0.15) 0%, transparent 40%, transparent 50%, rgba(12,12,10,0.85) 100%); }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(12,12,10,0.1) 0%, transparent 40%, transparent 55%, rgba(12,12,10,0.8) 100%); }
 .hero-content { position: absolute; bottom: 64px; left: 56px; right: 56px; }
 .hero-eyebrow { font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--fuchsia); margin-bottom: 16px; }
-.hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(48px, 8vw, 110px); line-height: 0.92; color: var(--cream); margin-bottom: 28px; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(56px, 9vw, 120px); line-height: 0.92; color: var(--cream); margin-bottom: 28px; }
 .hero-meta { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
 .hero-meta-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,234,227,0.4); }
@@ -53,12 +51,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 56
 .hero-scroll span { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,234,227,0.35); writing-mode: vertical-rl; }
 .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(237,234,227,0.35), transparent); }
 
-/* ── BACK ── */
 .back-link { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 40px 56px 0; transition: color 0.2s, gap 0.2s; }
 .back-link::before { content: '←'; font-size: 14px; }
 .back-link:hover { color: var(--fuchsia); gap: 16px; }
 
-/* ── INTRO ── */
 .intro { padding: 80px 56px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
 .intro-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--fuchsia); margin-bottom: 24px; display: block; }
 .intro-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(20px, 2.2vw, 28px); line-height: 1.65; color: var(--black); letter-spacing: 0.01em; }
@@ -68,14 +64,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 56
 .detail-label { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--mid); flex-shrink: 0; }
 .detail-value { font-size: 13px; letter-spacing: 0.06em; color: var(--black); text-align: right; }
 
-/* ── CONTEXT BLOCK ── */
-.context-block { margin: 0 56px 80px; padding: 56px 64px; background: var(--black); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; position: relative; overflow: hidden; }
-.context-block::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(237,234,227,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(237,234,227,0.025) 1px, transparent 1px); background-size: 48px 48px; }
-.context-col { position: relative; }
-.context-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--fuchsia); margin-bottom: 20px; display: block; }
-.context-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(16px, 1.8vw, 22px); line-height: 1.7; color: rgba(237,234,227,0.75); }
-
-/* ── GALLERY ── */
 .gallery { padding: 0 56px 120px; }
 .gallery-full { width: 100%; margin-bottom: 4px; }
 .gallery-full img { width: 100%; height: 70vh; object-fit: cover; display: block; }
@@ -90,7 +78,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 56
 .section-label-line { flex: 1; height: 1px; background: var(--border); }
 .section-label-text { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid); white-space: nowrap; }
 
-/* ── NEXT ── */
 .next-project { background: var(--black); padding: 80px 56px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; transition: background 0.3s; position: relative; overflow: hidden; }
 .next-project::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(237,234,227,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(237,234,227,0.02) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
 .next-project:hover { background: #161614; }
@@ -99,7 +86,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 56
 .next-arrow { font-size: 48px; color: rgba(237,234,227,0.2); transition: color 0.3s, transform 0.3s; line-height: 1; }
 .next-project:hover .next-arrow { color: var(--fuchsia); transform: translateX(8px); }
 
-/* ── FOOTER ── */
 footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgba(237,234,227,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
 .footer-logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
 .footer-copy { font-size:10px; letter-spacing:0.18em; color:rgba(237,234,227,0.2); }
@@ -114,7 +100,6 @@ footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgb
   .hero-scroll { display: none; }
   .back-link { padding: 32px 28px 0; }
   .intro { grid-template-columns: 1fr; gap: 48px; padding: 56px 28px; }
-  .context-block { margin: 0 28px 56px; padding: 40px 28px; grid-template-columns: 1fr; gap: 40px; }
   .gallery { padding: 0 28px 80px; }
   .gallery-full img { height: 50vw; }
   .gallery-two { grid-template-columns: 1fr; }
@@ -126,35 +111,35 @@ footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgb
 </style>
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://rakelart.github.io/mi-web/project-utopicus.html" />
-  <link rel="alternate" hreflang="en" href="https://rakelart.github.io/mi-web/project-utopicus.html" />
-  <link rel="alternate" hreflang="es" href="https://rakelart.github.io/mi-web/project-utopicus-es.html" />
+  <link rel="canonical" href="https://rakelart.github.io/mi-web/project-gayafores-es.html" />
+  <link rel="alternate" hreflang="en" href="https://rakelart.github.io/mi-web/project-gayafores.html" />
+  <link rel="alternate" hreflang="es" href="https://rakelart.github.io/mi-web/project-gayafores-es.html" />
 
   <!-- Meta robots -->
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rakelart.github.io/mi-web/project-utopicus.html" />
-  <meta property="og:title" content="UtopicUs Clementina — Barcelona · Arquicostura" />
-  <meta property="og:description" content="UtopicUs Clementina — Embroidered staircase railings for Izaskun Chinchilla's coworking space in Barcelona's Gràcia neighbourhood. Arquicostura · Raquel Rodrigo. 2018." />
-  <meta property="og:image" content="https://rakelart.github.io/mi-web/utopicus-2.jpg" />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://rakelart.github.io/mi-web/project-gayafores-es.html" />
+  <meta property="og:title" content="Gayafores — Arquicostura" />
+  <meta property="og:description" content="Gayafores — Patrones de azulejos bordados para el stand de la exposición de Azulejos Gayafores. Una nueva forma de presentar el diseño cerámico a través del tacto y la textura. Arquicostura · Raquel Rodrigo. 2015." />
+  <meta property="og:image" content="https://rakelart.github.io/mi-web/gayafores-1.jpg" />
+  <meta property="og:locale" content="es_ES" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="UtopicUs Clementina — Barcelona · Arquicostura" />
-  <meta name="twitter:description" content="UtopicUs Clementina — Embroidered staircase railings for Izaskun Chinchilla's coworking space in Barcelona's Gràcia neighbourhood. Arquicostura · Raquel Rodrigo. 2018." />
-  <meta name="twitter:image" content="https://rakelart.github.io/mi-web/utopicus-2.jpg" />
+  <meta name="twitter:title" content="Gayafores — Arquicostura" />
+  <meta name="twitter:description" content="Gayafores — Patrones de azulejos bordados para el stand de la exposición de Azulejos Gayafores. Una nueva forma de presentar el diseño cerámico a través del tacto y la textura. Arquicostura · Raquel Rodrigo. 2015." />
+  <meta name="twitter:image" content="https://rakelart.github.io/mi-web/gayafores-1.jpg" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "name": "UtopicUs Clementina — Barcelona · Arquicostura",
-    "url": "https://rakelart.github.io/mi-web/project-utopicus.html",
-    "description": "UtopicUs Clementina — Embroidered staircase railings for Izaskun Chinchilla's coworking space in Barcelona's Gràcia neighbourhood. Arquicostura · Raquel Rodrigo. 2018.",
+    "name": "Gayafores — Arquicostura",
+    "url": "https://rakelart.github.io/mi-web/project-gayafores.html",
+    "description": "Gayafores — Embroidered tile patterns for the Azulejos Gayafores exhibition stand. A new way to present ceramic design through touch and texture. Arquicostura · Raquel Rodrigo. 2015.",
     "author": {
       "@type": "Person",
       "name": "Raquel Rodrigo",
@@ -165,7 +150,6 @@ footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgb
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
 <nav>
   <a href="index.html" class="nav-logo">
     <svg viewBox="0 0 80 80" fill="none">
@@ -181,41 +165,40 @@ footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgb
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="projects.html" class="active">Work</a></li>
-    <li><a href="studio.html">Studio</a></li>
-    <li><a href="press.html">Press</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index-es.html">Inicio</a></li>
+    <li><a href="projects-es.html" class="active">Trabajo</a></li>
+    <li><a href="studio-es.html">Estudio</a></li>
+    <li><a href="press-es.html">Prensa</a></li>
+    <li><a href="contact-es.html">Contacto</a></li>
   </ul>
-  <div class="nav-lang"><span>EN</span> / <a href="project-utopicus-es.html" style="color:inherit;text-decoration:none;">ES</a></div>
+  <div class="nav-lang"><a href="project-gayafores-es.html" style="color:inherit;text-decoration:none;">EN</a> / <span>ES</span></div>
 </nav>
 
-<!-- ══ HERO ══ -->
 <div class="hero">
-  <img src="utopicus-2.jpg" alt="UtopicUs Clementina — embroidered staircase railings with clementines Barcelona" class="hero-img">
+  <img src="gayafores-1.jpg" alt="Gayafores — embroidered tile pattern panels exhibition stand" class="hero-img">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Interior Design · Izaskun Chinchilla Architects</div>
-    <h1 class="hero-title">UtopicUs<br>Clementina</h1>
+    <div class="hero-eyebrow">Brands · Azulejos Gayafores</div>
+    <h1 class="hero-title">Gayafores</h1>
     <div class="hero-meta">
       <div class="hero-meta-item">
-        <span class="hero-meta-label">Location</span>
-        <span class="hero-meta-value">Barcelona, Spain</span>
+        <span class="hero-meta-label">Client</span>
+        <span class="hero-meta-value">Azulejos Gayafores</span>
       </div>
       <div class="hero-meta-sep"></div>
       <div class="hero-meta-item">
         <span class="hero-meta-label">Year</span>
-        <span class="hero-meta-value">2018</span>
+        <span class="hero-meta-value">2015</span>
       </div>
       <div class="hero-meta-sep"></div>
       <div class="hero-meta-item">
-        <span class="hero-meta-label">Architect</span>
-        <span class="hero-meta-value">Izaskun Chinchilla</span>
+        <span class="hero-meta-label">Typology</span>
+        <span class="hero-meta-value">Exhibition stand</span>
       </div>
       <div class="hero-meta-sep"></div>
       <div class="hero-meta-item">
-        <span class="hero-meta-label">Neighbourhood</span>
-        <span class="hero-meta-value">Gràcia, Barcelona</span>
+        <span class="hero-meta-label">Technique</span>
+        <span class="hero-meta-value">Embroidery on metallic mesh</span>
       </div>
     </div>
   </div>
@@ -225,111 +208,80 @@ footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgb
   </div>
 </div>
 
-<!-- ══ BACK ══ -->
-<a href="projects.html" class="back-link">All projects</a>
+<a href="projects-es.html" class="back-link">Todos los proyectos</a>
 
-<!-- ══ INTRO ══ -->
 <div class="intro">
   <div class="intro-left">
-    <span class="intro-label">About the project</span>
+    <span class="intro-label">Sobre el proyecto</span>
     <p class="intro-text">
-      In 2018, architect Izaskun Chinchilla invited Arquicostura to collaborate with her design team on one of the most distinctive elements of UtopicUs Clementina — the railings of the building's central staircase.<br><br>
-      Together we designed and embroidered every railing across all floors with clementines — in tribute to the tree that presides over the secret south-facing courtyard and gives the building its name. A gesture that connects the slow craft of embroidery with a space designed around nature, community and calm.<br><br>
-      The building at Carrer Bretón de los Herreros 9 is deeply rooted in its surroundings: inspired by the rural heritage of Gràcia, the local Modernista tradition, and the nearby <em>Casa Vicens</em> by Antoni Gaudí — built just 150 metres away. Nature runs through every detail. And now, the railings.
+      Gayafores asked us to present their ceramic tile designs in a completely new way — one that you could also touch.<br><br>
+      We embroidered their tile patterns onto metallic mesh panels: the same colours, the same forms, the same geometry — but now with a tactile dimension that ceramics alone cannot offer. Visitors could run their hands across the surface and feel the warmth, the texture, the depth that embroidery brings to a design.<br><br>
+      A new language for a material with centuries of history behind it.
     </p>
   </div>
   <div class="intro-right">
     <div class="project-details">
       <div class="detail-row">
-        <span class="detail-label">Project</span>
-        <span class="detail-value">UtopicUs Clementina</span>
+        <span class="detail-label">Cliente</span>
+        <span class="detail-value">Azulejos Gayafores</span>
       </div>
       <div class="detail-row">
-        <span class="detail-label">Client</span>
-        <span class="detail-value">UtopicUs</span>
+        <span class="detail-label">Año</span>
+        <span class="detail-value">2015</span>
       </div>
       <div class="detail-row">
-        <span class="detail-label">Architect</span>
-        <span class="detail-value">Izaskun Chinchilla Architects</span>
+        <span class="detail-label">Tipología</span>
+        <span class="detail-value">Exhibition stand · Brand</span>
       </div>
       <div class="detail-row">
-        <span class="detail-label">Location</span>
-        <span class="detail-value">Gràcia, Barcelona, Spain</span>
+        <span class="detail-label">Técnica</span>
+        <span class="detail-value">Embroidery on metallic mesh</span>
       </div>
       <div class="detail-row">
-        <span class="detail-label">Address</span>
-        <span class="detail-value">Carrer Bretón de los Herreros, 9</span>
+        <span class="detail-label">Concept</span>
+        <span class="detail-value">Tile patterns made touchable</span>
       </div>
       <div class="detail-row">
-        <span class="detail-label">Year</span>
-        <span class="detail-value">2018</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Typology</span>
-        <span class="detail-value">Coworking · Staircase railings</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Collaboration</span>
-        <span class="detail-value">Design &amp; embroidery with Chinchilla's team</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Motif</span>
-        <span class="detail-value">Clementines · The courtyard tree</span>
+        <span class="detail-label">Panels</span>
+        <span class="detail-value">Multiple patterns · Full stand</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══ CONTEXT BLOCK ══ -->
-<div class="context-block">
-  <div class="context-col">
-    <span class="context-label">The building</span>
-    <p class="context-text">
-      UtopicUs Clementina is rooted in the history of Gràcia — a neighbourhood that was a rural village until 1897, when it was annexed to Barcelona. The building is inspired by its Modernista heritage and the nearby Casa Vicens by Antoni Gaudí, just 150 metres away. A space where working with passion requires moments of daily calm.
-    </p>
-  </div>
-  <div class="context-col">
-    <span class="context-label">The clementine</span>
-    <p class="context-text">
-      At the heart of the building, a south-facing secret courtyard is presided over by a clementine tree — the fruit that gives the space its name. Our embroidery carries that tree upward through every floor, stitch by stitch, so that the building's soul travels with you as you climb.
-    </p>
-  </div>
-</div>
-
-<!-- ══ GALLERY ══ -->
 <div class="gallery">
 
   <div class="gallery-full">
-    <img src="utopicus-5.jpeg" alt="UtopicUs Clementina — full staircase view showing embroidered railings across all floors">
+    <img src="gayafores-1.jpg" alt="Gayafores — full stand view with multiple embroidered tile pattern panels">
   </div>
-  <div class="gallery-caption">The central staircase · Embroidered railings across all floors · UtopicUs Clementina</div>
+  <div class="gallery-caption">Gayafores exhibition stand · Embroidered tile patterns on metallic mesh · 2015</div>
 
   <div class="gallery-two">
-    <img src="utopicus-3.jpeg" alt="UtopicUs Clementina — staircase ground floor with embroidered clementine railings">
-    <img src="utopicus-4.jpeg" alt="UtopicUs Clementina — close view of embroidered clementines on staircase railing">
+    <img src="gayafores-3.jpg" alt="Gayafores — two large embroidered panels with Moorish tile geometric patterns">
+    <img src="gayafores-5.jpg" alt="Gayafores — embroidered panel with blue and black tile motif framed">
   </div>
-  <div class="gallery-caption">Clementines climbing the staircase floor by floor</div>
+  <div class="gallery-caption">The tile patterns translated into embroidery — same geometry, new dimension</div>
+
+  <div class="gallery-asym">
+    <img src="gayafores-4.jpg" alt="Gayafores — embroidered black geometric tile pattern panel in wood frame">
+    <img src="gayafores-2.jpg" alt="Gayafores — smaller framed embroidered panels alongside tile samples">
+  </div>
+  <div class="gallery-caption">Individual panels · Each pattern hand-embroidered stitch by stitch</div>
 
   <div class="section-label">
     <div class="section-label-line"></div>
-    <span class="section-label-text">The embroidery</span>
+    <span class="section-label-text">The tactile dimension</span>
     <div class="section-label-line"></div>
   </div>
 
-  <div class="gallery-asym-r">
-    <img src="utopicus-7.jpg" alt="UtopicUs Clementina — macro detail of clementine embroidery stitch on metallic mesh railing">
-    <img src="utopicus-6.jpeg" alt="UtopicUs Clementina — top floor view looking down staircase with embroidered railings and skylight">
+  <div class="gallery-two">
+    <img src="gayafores-6.jpg" alt="Gayafores — macro detail of orange and dark blue embroidery stitch texture">
+    <img src="gayafores-7.jpg" alt="Gayafores — macro detail of turquoise embroidery stitch on metallic mesh">
   </div>
-  <div class="gallery-caption">Stitch detail · View from the top floor toward the skylight</div>
-
-  <div class="gallery-full">
-    <img src="utopicus-1.jpeg" alt="UtopicUs Clementina — courtyard with the clementine tree and restaurant interior">
-  </div>
-  <div class="gallery-caption">Patio La Clementina · The courtyard and its tree that gives the building its name</div>
+  <div class="gallery-caption">What ceramics cannot offer — texture you can touch and feel</div>
 
 </div>
 
-<!-- ══ NEXT ══ -->
 <a href="projects.html" class="next-project">
   <div>
     <div class="next-label">Back to</div>
@@ -338,7 +290,6 @@ footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgb
   <div class="next-arrow">→</div>
 </a>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <a href="index.html" class="footer-logo">
     <svg width="20" height="20" viewBox="0 0 80 80" fill="none">
@@ -350,10 +301,10 @@ footer { background: var(--black); padding: 48px 56px; border-top: 1px solid rgb
     <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(237,234,227,0.25);">Arquicostura</span>
   </a>
   <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="projects.html">Work</a></li>
-    <li><a href="studio.html">Studio</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index-es.html">Inicio</a></li>
+    <li><a href="projects-es.html" class="active">Trabajo</a></li>
+    <li><a href="studio-es.html">Estudio</a></li>
+    <li><a href="contact-es.html">Contacto</a></li>
     <li><a href="https://instagram.com/arquicosturastudio" target="_blank">Instagram</a></li>
   </ul>
   <span class="footer-copy">© 2025 Arquicostura · Raquel Rodrigo</span>
